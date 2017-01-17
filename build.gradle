@@ -1,0 +1,42 @@
+plugins {
+    // Changes in the plugins section should be also be applied to build.offline.gradle
+    id 'java'
+    id 'application' 
+    // publishing
+    id 'maven-publish'
+    id 'com.jfrog.bintray' version '1.7.3'
+    // ide
+    id 'idea'
+    id 'eclipse'
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+version = '0.1'
+sourceCompatibility = '1.8'
+mainClassName = 'nl.esciencecenter.storyteller.QueryBuilderDaemon'
+
+distributions {
+     main {
+         contents {
+             from { 'build/libs' }
+             from { 'src/main/resources' }
+         }
+     }
+}
+
+dependencies {
+    // Libaries
+    compile group: 'org.yaml', name: 'snakeyaml', version: '1.16'
+
+    // Runtime dependencies
+    runtime group: 'ch.qos.logback', name: 'logback-core', version: '1.0.11'
+    runtime group: 'ch.qos.logback', name: 'logback-classic', version: '1.0.11'
+
+    // Testing dependencies
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
