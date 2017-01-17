@@ -16,9 +16,31 @@
 
 package nl.esciencecenter;
 
+import org.yaml.snakeyaml.Yaml;
+import org.yaml.snakeyaml.constructor.Constructor;
+import sun.tools.jar.CommandLine;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Collections;
+import java.util.Map;
+
 /**
  * 
  */
 public class CWLParser {
 
+    public static void main(String[] args) throws FileNotFoundException {
+        Yaml yaml = new Yaml(new Constructor(CommandLineTool.class));
+
+
+        CommandLineTool tool = (CommandLineTool) yaml.load(new FileInputStream(args[0]));
+
+
+        System.out.println(tool.toString());
+
+
+    }
 }
