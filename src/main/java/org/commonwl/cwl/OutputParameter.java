@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 Netherlands eScience Center
+ * Copyright 2013 Netherlands eScience Center
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,11 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package org.commonwl.cwl;
 
-package nl.esciencecenter;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- */
-public class CWLParserTest {
+public class OutputParameter extends Parameter {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1477836903369041963L;
+	
+	public OutputParameter(
+			@JsonProperty("id") String id,
+			@JsonProperty("type") String type,
+			@JsonProperty("label") String label
+			){
+		super(id, type, label);
+	}
 
 }
