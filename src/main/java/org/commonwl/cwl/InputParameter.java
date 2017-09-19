@@ -17,31 +17,10 @@ package org.commonwl.cwl;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * 
- * InputParameter holds information on CWL input parameters.
- * 
- * @version 1.0
- * @since 1.0
- */
 public class InputParameter extends Parameter {
-	private static final long serialVersionUID = -3096344382428378961L;
-
-	/**
-	 * Create an InputParameter
-	 * 
-	 * @param id
-	 * 			the id of the parameter
-	 * @param type
-	 * 			the type of the parameter
-	 * @param label
-	 * 			the label of the parameter
-	 */
 	public InputParameter(
-			@JsonProperty("id") String id,
-			@JsonProperty("type") String type,
-			@JsonProperty("label") String label
+			@JsonProperty("id") String id
 			){
-		super(id, type, label);
+		super(id);
 	}
 }
