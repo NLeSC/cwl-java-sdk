@@ -1,7 +1,8 @@
 plugins {
     // Changes in the plugins section should be also be applied to build.offline.gradle
     id 'java'
-    id 'application' 
+    id 'application'
+    id "com.github.johnrengelman.shadow" version "1.2.4"
     // publishing
     id 'maven-publish'
     id 'com.jfrog.bintray' version '1.7.3'
@@ -17,15 +18,22 @@ repositories {
 
 version = '0.1'
 sourceCompatibility = '1.8'
-mainClassName = 'nl.esciencecenter.storyteller.QueryBuilderDaemon'
+mainClassName = 'org.commonwl.cwl.Runner'
 
 distributions {
      main {
          contents {
-             from { 'build/libs' }
-             from { 'src/main/resources' }
+            from('/docs') {
+                into 'docs'
+            }
          }
      }
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'org.commonwl.cwl.Runner'
+    }
 }
 
 dependencies {
@@ -33,6 +41,12 @@ dependencies {
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.8.8'
     compile group: 'com.fasterxml.jackson.dataformat', name: 'jackson-dataformat-yaml', version: '2.8.8'
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.8.8'
+
+    // https://mvnrepository.com/artifact/commons-cli/commons-cli
+    compile group: 'commons-cli', name: 'commons-cli', version: '1.4'
+
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-simple
+    compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.6.1'
 
     // Runtime dependencies
     runtime group: 'ch.qos.logback', name: 'logback-core', version: '1.0.11'
